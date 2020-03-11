@@ -106,7 +106,7 @@ function deleteStudent(id){
 <div class="panel panel-default">
     <div class="panel-body">
     <form action="student" method="get" id="queryForm" name="queryForm" class="form-inline"> 
-        班级：<select name="clazzId" id="clazzId" class="form-control" >
+        学院：<select name="clazzId" id="clazzId" class="form-control" >
         	  <option value="">请选择</option>
 				<c:forEach var="item" items="${clazzList}">
 					<option value="${item.id}"<c:if test="${item.id==student.clazzId}">selected="selected"</c:if>>${item.name}</option>
@@ -120,13 +120,13 @@ function deleteStudent(id){
   		<span class="input-group-addon" id="sizing-addon3">姓名：</span>
   		<input type="text" name="name" class="form-control" id="name"  value="${student.name}" />
 		</div>
-         性别：<select name="sex" class="form-control" id="sex">
+         体温是否正常：<select name="sex" class="form-control" id="sex">
         		<option value="">请选择</option>
 				<c:forEach var="item" items="${sexList}">
 					<option value="${item.itemCode}" <c:if test="${item.itemCode==student.sex}">selected="selected"</c:if>>${item.itemName}</option>
 				</c:forEach>			
 			   </select>
-        民族：<select name="nation" class="form-control" id="nation">
+        是否今天从外地返校：<select name="nation" class="form-control" id="nation">
         		<option value="">请选择</option>
 				<c:forEach var="item" items="${nationList}">
 					<option value="${item.itemCode}" <c:if test="${item.itemCode==student.nation}">selected="selected"</c:if>>${item.itemName}</option>
@@ -146,13 +146,13 @@ function deleteStudent(id){
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">添加学生</h4>
+                <h4 class="modal-title" id="myModalLabel">疫情上报</h4>
             </div>
             <div class="modal-body">
             <form action="" method="post" onsubmit="return false" id="addStudentForm">
             <input id="id" name="id" type="hidden" value="" />
 			       		<div class="form-group">
-			       			<label for="">班级</label>
+			       			<label for="">学院</label>
 			       			<select name="clazzId" id="clazzId">
 								<c:forEach var="item" items="${clazzList}">
 									<option value="${item.id}">${item.name}</option>
@@ -168,7 +168,7 @@ function deleteStudent(id){
 			       			<input type="text" name="name" class="form-control" id="name">
 			       		</div>
 			       		<div class="form-group">
-			       			<label for="">性别</label>
+			       			<label for="">是否今天从外地返校</label>
 			       			<select name="sex" class="form-control" id="sex">
 			       				<c:forEach var="item" items="${sexList}">
 			       					<option value="${item.itemCode}">${item.itemName}</option>
@@ -181,7 +181,7 @@ function deleteStudent(id){
 			       			<input type="date" name="birthday" class="form-control" id="birthday">
 			       		</div>
 			       		<div class="form-group">
-			       			<label for="">民族</label>
+			       			<label for="">体温是否正常</label>
 			       			<select name="nation" class="form-control" id="nation">
 			       				<c:forEach var="group" items="${nationList}">
 			       					<option value="${group.itemCode}">${group.itemName}</option>
@@ -204,13 +204,13 @@ function deleteStudent(id){
 	<table class="table">
 	    <thead>
 	        <tr>
-	        	<th>班级</th>
+	        	<th>学院</th>
 	            <th>学号</th>
 	            <th>姓名</th>
-	            <th>性别</th>
+	            <th>是否今天从外地返校</th>
 	            <th>生日</th>
-	            <th>民族</th>
-	            <th>创建日期</th>
+	            <th>体温是否正常</th>
+	            <th>上报日期</th>
 	            <th>创建人</th>
 	            <th>操作</th>
 	        </tr>
@@ -224,7 +224,7 @@ function deleteStudent(id){
 		            <td>${student.sex}</td>
 		            <td><fmt:formatDate pattern="yyyy-MM-dd" value="${student.birthday}" /></td>
 		            <td>${student.nation}</td>
-		            <td><fmt:formatDate pattern="yyyy-MM-dd" value="${student.createDate}" /></td>
+		            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${student.createDate}" /></td>
 		            <td>${student.createName}</td>
 		            <td>
 		            	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addStudent" onclick="updateStudent(${student.id})">修改</button>
