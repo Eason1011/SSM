@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nwnu.dao.DictDao">
+	<select id="dictList" parameterType="String"
+		resultType="Dict">
+		select itemCode,itemName
+		from dict where 
+		groupCode = #{groupCode} 
+		and status=1
+		order by seq asc
+	</select>
+</mapper>

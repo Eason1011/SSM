@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nwnu.dao.StudentDao">
+
+	<sql id="selectStudentWhere">
+		<where>
+			<if test="clazzId!=null and clazzId!=''">
+				and clazzId=#{clazzId}
+			</if>
+			<if test="code!=null and code!=''">
+				and a.code like #{code}"%"
+			</if>
+			<if test="name!=null and name!=''">
+				and a.name like "%"#{name}"%"
+			</if>
+			<if test="sex!=null and sex!='' ">
+				and sex=#{sex}
+			</if>
+			<if test="nation!=null and nation!=''">
+				and nation=#{nation}
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectStudentList" parameterType="Student" resultType="Student">
+		select
+			a.id,
+			b.id clazzId,
+			a.code,
+			a.name,
+			(select itemName from dict where groupCode='sex' and itemCode=sex) as sex,
+			birthday,(select itemName from dict where groupCode='nation' and itemCode=nation) as nation,a.createDate,
+			a.createName 
+		from student a left join clazz b on a.clazzId=b.id
+		<include refid="selectStudentWhere"></include>
+		order by a.code asc
+		limit #{start},#{rows}
+	</select>
+	
+	
+	<select id="selectStudentListCount" parameterType="Student" resultType="Integer">
+		select count(*)
+		from student a left join clazz b on a.clazzId=b.id
+		<include refid="selectStudentWhere"></include>
+	</select>
+	
+	
+	
+	<select id="getStudentById" parameterType="Integer"
+		resultType="Student">
+		select * from student 
+		where id=#{id}
+	</select>
+	
+	
+	<insert id="insertStudent" parameterType="Student">
+		insert into student(
+		clazzId,
+		code,
+		name,
+		sex,
+		birthday,
+		nation,
+		createDate,
+		createName
+		)value(
+		#{clazzId},
+		#{code},
+		#{name},
+		#{sex},
+		#{birthday},
+		#{nation},
+		#{createDate},
+		#{createName}
+		) 
+	</insert>
+	
+	
+	<update id="updateStudent" parameterType="Student">
+	update student
+	<set>
+		<if test="clazzId!=null">
+			clazzId=#{clazzId},
+		</if>
+		<if test="code!=null">
+			code=#{code},
+		</if>
+		<if test="name!=null">
+			name=#{name},
+		</if>
+		<if test="sex!=null">
+			sex=#{sex},
+		</if>
+		<if test="birthday!=null">
+			birthday=#{birthday},
+		</if>
+		<if test="nation!=null">
+			nation=#{nation},
+		</if>
+		<if test="createDate!=null">
+			createData=#{createDate},
+		</if>
+		<if test="createName!=null">
+			createName=#{createName}
+		</if>
+	
+	</set>
+	where id=#{id}
+	</update>
+	
+	<delete id="deleteStudent" parameterType="Integer">
+		delete from student where id=#{id}
+	</delete>
+</mapper>
