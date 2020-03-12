@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>酒仙网登录</title>
+<title>西北师范大学疫情上报系统</title>
 <link rel="stylesheet" href="plug-in/system/css/style.css" />
 <link rel="stylesheet" href="plug-in/bootstrap-3.3.7-dist/css/bootstrap.css" />
 </head>

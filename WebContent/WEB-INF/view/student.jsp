@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>欢迎！</title>
+	<title>西北师范大学疫情上报系统</title>
 	<link rel="stylesheet" href="plug-in/bootstrap-3.3.7-dist/css/bootstrap.css" />
 </head>
 <script type="text/javascript">
@@ -78,15 +78,30 @@ function deleteStudent(id){
 }
 </script>
 <body>
-<div class="alert alert-info">
-	<span>学生管理功能</span>
-	<span class="pull-right">
-		 您好！${user.name}
-		<a href="logout">退出登录</a>
-	</span>
+<div style="width: 100%;background: #fff;height: 88px;box-shadow: 1px 2px 6px #e1e1e1;z-index: 1;position: relative;">
+	<div style="float: left;height: 88px;width: 460px;margin-left: 120px;">
+		<p style="background:url(plug-in/system/images/login.jpg) no-repeat; width: 210px;height:88px;float: left;background-size:210px 86px; ">
+				<a href=""></a>
+		</p>
+		<a style="width: 240px;display: block;height: 80px;float: right;">
+				<img src="plug-in/system/images/font.png" style="height:80px;width:240px;" alt="">
+		</a>
+	</div>			
+		<div style="float:right;padding-top:30px;padding-right:60px;">
+			<span class="pull-right">
+		 	您好！${user.name}
+				<a href="logout">退出登录</a>
+			</span>
+		</div>
+			
+		
+	</div>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>温馨提示：</strong> 您可以根据以下不同信息来搜索您需要查看的疫情信息
 </div>
 
-<div class="nav">
+<!--  <div class="nav">
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="container-fluid">
 	    <div class="navbar-header">
@@ -100,7 +115,7 @@ function deleteStudent(id){
 	    </div>
 		</div>
 	</nav>
-</div>
+</div>-->
 
 
 <div class="panel panel-default">
