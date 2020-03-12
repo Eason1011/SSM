@@ -21,6 +21,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="nation!=null and nation!=''">
 				and nation=#{nation}
 			</if>
+			<if test="createName!=null">
+				and clazzName=#{clazzName}
+			</if>
+			<if test="createName!=null">
+				and clazzTeacher=#{clazzTeacher}
+			</if>
+			<if test="clazzPhone!=null">
+				and clazzPhone=#{clazzPhone}
+			</if>
 		</where>
 	</sql>
 
@@ -31,8 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			a.code,
 			a.name,
 			(select itemName from dict where groupCode='sex' and itemCode=sex) as sex,
-			birthday,(select itemName from dict where groupCode='nation' and itemCode=nation) as nation,a.createDate,
-			a.createName 
+			(select itemName from dict where groupCode='nation' and itemCode=nation) as nation,
+			a.createDate,
+			a.createName,
+			b.name clazzName,
+			b.teacher clazzTeacher,
+			b.num clazzPhone
 		from student a left join clazz b on a.clazzId=b.id
 		<include refid="selectStudentWhere"></include>
 		order by a.code asc
@@ -61,7 +74,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		code,
 		name,
 		sex,
-		birthday,
 		nation,
 		createDate,
 		createName
@@ -70,7 +82,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{code},
 		#{name},
 		#{sex},
-		#{birthday},
 		#{nation},
 		#{createDate},
 		#{createName}
@@ -93,9 +104,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="sex!=null">
 			sex=#{sex},
 		</if>
-		<if test="birthday!=null">
-			birthday=#{birthday},
-		</if>
 		<if test="nation!=null">
 			nation=#{nation},
 		</if>
@@ -104,6 +112,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="createName!=null">
 			createName=#{createName}
+		</if>
+		<if test="createName!=null">
+			clazzName=#{clazzName}
 		</if>
 	
 	</set>

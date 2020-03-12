@@ -37,7 +37,7 @@ function updateStudent(id){
        		$("#addStudentForm #code").val(data.code);
        		$("#addStudentForm #name").val(data.name);
        		$("#addStudentForm #sex").val(data.sex);
-       		$("#addStudentForm #birthday").val(data.birthday);
+       		
        		$("#addStudentForm #nation").val(data.nation);       		
     	}
 	});
@@ -48,7 +48,7 @@ function clearFormData(){
 	$("#addStudentForm #code").val("");
 	$("#addStudentForm #name").val("");
 	$("#addStudentForm #sex").val("");
-	$("#addStudentForm #birthday").val("");
+	
 	$("#addStudentForm #nation").val("");
 }
 function clearQueryForm(){	
@@ -101,21 +101,7 @@ function deleteStudent(id){
   <strong>温馨提示：</strong> 您可以根据以下不同信息来搜索您需要查看的疫情信息
 </div>
 
-<!--  <div class="nav">
-	<nav class="navbar navbar-inverse" role="navigation">
-		<div class="container-fluid">
-	    <div class="navbar-header">
-	        <a class="navbar-brand" href="#">学生管理</a>
-	    </div>
-	    <div>
-	        <ul class="nav navbar-nav">
-	            <li class="active"><a href="#">班级管理</a></li>
-	            <li><a href="#">系统管理</a></li>
-	        </ul>
-	    </div>
-		</div>
-	</nav>
-</div>-->
+
 
 
 <div class="panel panel-default">
@@ -191,10 +177,7 @@ function deleteStudent(id){
 			       			</select>
 			       			
 			       		</div>
-			       		<div class="form-group">
-			       			<label for="">生日</label>
-			       			<input type="date" name="birthday" class="form-control" id="birthday">
-			       		</div>
+			       		
 			       		<div class="form-group">
 			       			<label for="">体温是否正常</label>
 			       			<select name="nation" class="form-control" id="nation">
@@ -223,24 +206,24 @@ function deleteStudent(id){
 	            <th>学号</th>
 	            <th>姓名</th>
 	            <th>是否今天从外地返校</th>
-	            <th>生日</th>
 	            <th>体温是否正常</th>
 	            <th>上报日期</th>
-	            <th>创建人</th>
+	            <th>学院负责老师</th>
+	            <th>学院电话</th>
 	            <th>操作</th>
 	        </tr>
 	    </thead>
 	    <tbody>
 	    	<c:forEach items="${page.rows}" var="student">
 		        <tr class="active">
-		            <td>${student.clazzId}</td>
+		            <td >${student.clazzName}</td>
 		            <td>${student.code}</td>
 		            <td>${student.name}</td>
 		            <td>${student.sex}</td>
-		            <td><fmt:formatDate pattern="yyyy-MM-dd" value="${student.birthday}" /></td>
 		            <td>${student.nation}</td>
 		            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${student.createDate}" /></td>
-		            <td>${student.createName}</td>
+		            <td>${student.clazzTeacher}</td>
+		            <td>${student.clazzPhone}</td>
 		            <td>
 		            	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addStudent" onclick="updateStudent(${student.id})">修改</button>
 						<button type="button" class="btn btn-danger" onclick="deleteStudent(${student.id})">删除</button>

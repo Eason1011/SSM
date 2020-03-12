@@ -10,6 +10,8 @@ public class Student extends BasePojo {
 	
 	private Integer clazzId;
 	private String clazzName;
+	private String clazzTeacher;
+	private Integer clazzPhone;
 	private String code;
 	private String name;
 	private String sex;
@@ -75,7 +77,18 @@ public class Student extends BasePojo {
 	public void setClazzName(String clazzName) {
 		this.clazzName = clazzName;
 	}
-	
+	public String getclazzTeacher() {
+		return clazzTeacher;
+	}
+	public void setclazzTeacher(String clazzTeacher) {
+		this.clazzTeacher = clazzTeacher;
+	}
+	public Integer getclazzPhone() {
+		return clazzPhone;
+	}
+	public void setclazzPhone(Integer clazzPhone) {
+		this.clazzPhone = clazzPhone;
+	}
 	
 	
 	
