@@ -14,4 +14,6 @@ public interface StudentService {
 	public Integer updateStudent(Student student);
 	public Integer deleteStudent(Integer id);
 	public Student getStudentById(Integer id);
+	public void insertSelective(List<Student> list);
+	public List<Student> getStudentList();
 }

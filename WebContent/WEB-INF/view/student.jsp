@@ -198,8 +198,25 @@ function deleteStudent(id){
     </div><!-- /.modal -->
 </div>
 
+
+<button class="btn btn-info btn-lg" style="float: right;font-size: 16px" onclick="downAll()">
+<span class="glyphicon glyphicon-download"></span>全部下载
+</button>
+<table style="float: right">
+<tr>
+<td><input type="file" id="upload" style="width: 200px;height: 40px"  name="upload" value="" /></td>
+<td><button class="btn btn-info btn-lg" style="float: right;font-size: 16px" onclick="uploadFile()">
+<span class="glyphicon glyphicon-upload"></span>上传数据
+</button></td>
+</tr>
+  </table>
+
+<a href="javascript:;" id="export" >导出</a>
+
+
+
 <div class="cont">
-	<table class="table">
+	<table class="table"  id="tableExcel">
 	    <thead>
 	        <tr>
 	        	<th>学院</th>
@@ -243,4 +260,58 @@ function deleteStudent(id){
 
 <script src="plug-in/jquery-3.3.1/jquery-3.3.1.min.js"></script>
 <script src="plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+
+
+<script>
+var linkAll=window.location.href; //下载所有数据
+linkAll+='/exportStudentAllList';
+//上面的作为全局变量，也可以自己写到方法里面作为局部变量
+
+//下载
+function downAll() {
+    window.location.replace(linkAll);
+
+}
+
+//上传数据 start
+function uploadFile() {
+    var file = $("#upload").val();
+    file = file.substring(file.lastIndexOf('.'), file.length);
+    if (file == '') {
+        alert("上传文件不能为空！");
+    } else if (file != '.xlsx' && file != '.xls') {
+        alert("请选择正确的excel类型文件！");
+    } else {
+        ajaxFileUpload();
+    }
+}
+function ajaxFileUpload() {
+
+    var formData = new FormData();
+    var name = $("#upload").val();
+    formData.append("file", $("#upload")[0].files[0]);
+    formData.append("name", name);
+    $.ajax({
+        url : "importCustomerList",
+        type : "post",
+        async : false,
+        data : formData,
+        processData : false,
+        contentType : false,
+        beforeSend : function() {
+            console.log("正在进行，请稍候");
+        },
+        success : function(e) {
+            if (e == "02") {
+                alert("导入失败");
+            } else {
+                alert(e);
+            }
+        }
+    });
+}
+
+
+</script>
 </html>
