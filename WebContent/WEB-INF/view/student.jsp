@@ -17,7 +17,7 @@ function saveStudent(){
   $.post("insertStudent",$('#addStudentForm').serialize(),
   	function(data){
 	  if(data=="OK"){
-		  alert("疫情上报成功！");
+		  alert("信息修改成功！");
 		  window.location.reload();
 		  clearFormData();
 	  }else{
@@ -64,10 +64,10 @@ function deleteStudent(id){
 		$.post("deleteStudent",{"id":id},
 			  	function(data){
 				  if(data=="OK"){
-					  alert("删除学生成功！");
+					  alert("删除学生疫情信息成功！");
 					  window.location.reload();
 				  }else{
-					  alert("删除学生失败！");
+					  alert("删除学生疫情信息失败！");
 					  
 				  }
 			  	}
