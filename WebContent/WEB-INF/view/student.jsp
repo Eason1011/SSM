@@ -119,7 +119,7 @@ function deleteStudent(id){
 		</div>
         <div class="input-group input-group-sm">
   		<span class="input-group-addon" id="sizing-addon3">姓名：</span>
-  		<input type="text" name="name" class="form-control" id="name"  value="${student.name}" />
+  		<input type="text" style="width:145px;" name="name" class="form-control" id="name"  value="${student.name}" />
 		</div>
          体温是否正常：<select name="sex" class="form-control" id="sex">
         		<option value="">请选择</option>
@@ -135,6 +135,7 @@ function deleteStudent(id){
 			   </select>
 		<button class="btn btn-primary btn-sm" type="submit">查询</button>
 		<button class="btn btn-danger btn-sm" type="button" onclick="clearQueryForm()">清除</button>
+		<a id="export" class="btn btn-info btn-sm" type="button">导出</a>
 		</form>
     </div>
 </div>
@@ -199,19 +200,6 @@ function deleteStudent(id){
 </div>
 
 
-<button class="btn btn-info btn-lg" style="float: right;font-size: 16px" onclick="downAll()">
-<span class="glyphicon glyphicon-download"></span>全部下载
-</button>
-<table style="float: right">
-<tr>
-<td><input type="file" id="upload" style="width: 200px;height: 40px"  name="upload" value="" /></td>
-<td><button class="btn btn-info btn-lg" style="float: right;font-size: 16px" onclick="uploadFile()">
-<span class="glyphicon glyphicon-upload"></span>上传数据
-</button></td>
-</tr>
-  </table>
-
-<a href="javascript:;" id="export" >导出</a>
 
 
 
@@ -262,56 +250,24 @@ function deleteStudent(id){
 <script src="plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
 
-
 <script>
-var linkAll=window.location.href; //下载所有数据
-linkAll+='/exportStudentAllList';
-//上面的作为全局变量，也可以自己写到方法里面作为局部变量
+//导出数据
+$("#export").click(function () {
+    tableToExcel();
+})
 
-//下载
-function downAll() {
-    window.location.replace(linkAll);
-
-}
-
-//上传数据 start
-function uploadFile() {
-    var file = $("#upload").val();
-    file = file.substring(file.lastIndexOf('.'), file.length);
-    if (file == '') {
-        alert("上传文件不能为空！");
-    } else if (file != '.xlsx' && file != '.xls') {
-        alert("请选择正确的excel类型文件！");
-    } else {
-        ajaxFileUpload();
+var tableToExcel = (function () {
+    var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+    return function () {
+        //根据ID获取table表格HTML
+        var table = document.getElementById("tableExcel");
+        var ctx = { worksheet: 'Worksheet', table: table.innerHTML };
+        document.getElementById("export").href = uri + base64(format(template, ctx));
+        document.getElementById("export").download = '培训申请管理.xls';
     }
-}
-function ajaxFileUpload() {
-
-    var formData = new FormData();
-    var name = $("#upload").val();
-    formData.append("file", $("#upload")[0].files[0]);
-    formData.append("name", name);
-    $.ajax({
-        url : "importCustomerList",
-        type : "post",
-        async : false,
-        data : formData,
-        processData : false,
-        contentType : false,
-        beforeSend : function() {
-            console.log("正在进行，请稍候");
-        },
-        success : function(e) {
-            if (e == "02") {
-                alert("导入失败");
-            } else {
-                alert(e);
-            }
-        }
-    });
-}
-
-
+})()
 </script>
 </html>

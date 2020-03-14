@@ -98,21 +98,22 @@ function deleteStudent(id){
 	<div class="s_cen">
 		<div class="s_cen_top">
 			<img src="plug-in/system/images/student.png" style="height:100%;width:30%;" alt="">
-			<!-- 按钮触发模态框 -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addStudent">添加</button>
+<!-- 按钮触发模态框 -->
+<!-- 按钮触发模态框 -->
+<button style="display:inline-block;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addStudent">添加</button>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">添加学生</h4>
+                <h4 class="modal-title" id="myModalLabel">疫情上报</h4>
             </div>
             <div class="modal-body">
             <form action="" method="post" onsubmit="return false" id="addStudentForm">
             <input id="id" name="id" type="hidden" value="" />
 			       		<div class="form-group">
-			       			<label for="">班级</label>
+			       			<label for="">学院</label>
 			       			<select name="clazzId" id="clazzId">
 								<c:forEach var="item" items="${clazzList}">
 									<option value="${item.id}">${item.name}</option>
@@ -128,7 +129,7 @@ function deleteStudent(id){
 			       			<input type="text" name="name" class="form-control" id="name">
 			       		</div>
 			       		<div class="form-group">
-			       			<label for="">性别</label>
+			       			<label for="">是否今天从外地返校</label>
 			       			<select name="sex" class="form-control" id="sex">
 			       				<c:forEach var="item" items="${sexList}">
 			       					<option value="${item.itemCode}">${item.itemName}</option>
@@ -136,12 +137,9 @@ function deleteStudent(id){
 			       			</select>
 			       			
 			       		</div>
+			       		
 			       		<div class="form-group">
-			       			<label for="">生日</label>
-			       			<input type="date" name="birthday" class="form-control" id="birthday">
-			       		</div>
-			       		<div class="form-group">
-			       			<label for="">民族</label>
+			       			<label for="">体温是否正常</label>
 			       			<select name="nation" class="form-control" id="nation">
 			       				<c:forEach var="group" items="${nationList}">
 			       					<option value="${group.itemCode}">${group.itemName}</option>
@@ -158,6 +156,11 @@ function deleteStudent(id){
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
+</div>
+
+<div class="alert alert-danger alert-dismissible" role="alert" style="display:inline-block;float:right;margin-top:20px;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>温馨提示：</strong> 如果你填报的信息有误，请联系学院负责老师进行修改！
 </div>
 		</div>
 		<div class="s_cen_left">
@@ -205,8 +208,8 @@ function deleteStudent(id){
 
 	<div class="s_footer" style="height: 90px;">
      <div class="s_foot">
-          <p>© &nbsp;酒仙网&nbsp; 2011 jiuxian.com All &nbsp;Rights Reserved&nbsp;&nbsp;<a target="_blank" href="#">京ICP证110141号</a>&nbsp;&nbsp;京公网安备1101050188221</p>
-          <p class="red">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+          <p>© &nbsp;西北师范大学&nbsp; 2020 <a href="https://www.nwnu.edu.cn/">nwnu.edu.cn.com</a>  All &nbsp;Rights Reserved&nbsp;&nbsp;<a target="_blank" href="#">京ICP证110141号</a>&nbsp;&nbsp;京公网安备1101050188221</p>
+          <p class="red">版权所有：IEason&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;github地址：<a href="https://github.com/Eason1011">github.com/Eason1011</a></p>
      </div>
 </div>
 </body>
