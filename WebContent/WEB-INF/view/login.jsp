@@ -17,7 +17,7 @@ function saveStudent(){
   $.post("insertStudent",$('#addStudentForm').serialize(),
   	function(data){
 	  if(data=="OK"){
-		  alert("操作成功！");
+		  alert("疫情上报成功！");
 		  window.location.reload();
 		  clearFormData();
 	  }else{

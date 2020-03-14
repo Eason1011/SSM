@@ -17,7 +17,7 @@ function saveStudent(){
   $.post("insertStudent",$('#addStudentForm').serialize(),
   	function(data){
 	  if(data=="OK"){
-		  alert("操作成功！");
+		  alert("疫情上报成功！");
 		  window.location.reload();
 		  clearFormData();
 	  }else{
@@ -121,13 +121,13 @@ function deleteStudent(id){
   		<span class="input-group-addon" id="sizing-addon3">姓名：</span>
   		<input type="text" style="width:145px;" name="name" class="form-control" id="name"  value="${student.name}" />
 		</div>
-         体温是否正常：<select name="sex" class="form-control" id="sex">
+         是否今天从外地返校：<select name="sex" class="form-control" id="sex">
         		<option value="">请选择</option>
 				<c:forEach var="item" items="${sexList}">
 					<option value="${item.itemCode}" <c:if test="${item.itemCode==student.sex}">selected="selected"</c:if>>${item.itemName}</option>
 				</c:forEach>			
 			   </select>
-        是否今天从外地返校：<select name="nation" class="form-control" id="nation">
+        体温是否正常：<select name="nation" class="form-control" id="nation">
         		<option value="">请选择</option>
 				<c:forEach var="item" items="${nationList}">
 					<option value="${item.itemCode}" <c:if test="${item.itemCode==student.nation}">selected="selected"</c:if>>${item.itemName}</option>
@@ -141,7 +141,7 @@ function deleteStudent(id){
 </div>
 
 <!-- 按钮触发模态框 -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addStudent">添加</button>
+<!--  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addStudent">添加</button>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -266,7 +266,7 @@ var tableToExcel = (function () {
         var table = document.getElementById("tableExcel");
         var ctx = { worksheet: 'Worksheet', table: table.innerHTML };
         document.getElementById("export").href = uri + base64(format(template, ctx));
-        document.getElementById("export").download = '培训申请管理.xls';
+        document.getElementById("export").download = '学生疫情表.xls';
     }
 })()
 </script>
