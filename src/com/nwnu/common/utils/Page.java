@@ -3,9 +3,9 @@ package com.nwnu.common.utils;
 import java.util.List;
 
 public class Page<T> {
-	private int total;  //分页总数
-    private int page;   //当前第几页
-    private int size;    //每页多少行
+	private int total;  //分页的总数
+    private int page;   //当前在第几页
+    private int size;    //每页有多少行
     private List<T> rows;   //记录集
     public int getTotal() {
         return total;

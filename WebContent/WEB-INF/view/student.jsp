@@ -17,11 +17,11 @@ function saveStudent(){
   $.post("insertStudent",$('#addStudentForm').serialize(),
   	function(data){
 	  if(data=="OK"){
-		  alert("信息修改成功！");
+		  alert("疫情信息修改成功！");
 		  window.location.reload();
 		  clearFormData();
 	  }else{
-		  alert("操作失败！");
+		  alert("你的操作失败！");
 	  }
   	}
   );
@@ -59,7 +59,7 @@ function clearQueryForm(){
 	$("#queryForm #nation").val("");
 }
 function deleteStudent(id){	
-	var r = confirm("你确定删除吗");
+	var r = confirm("你确定要删除吗");
 	if (r == true) {
 		$.post("deleteStudent",{"id":id},
 			  	function(data){
@@ -98,7 +98,7 @@ function deleteStudent(id){
 	</div>
 <div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>温馨提示：</strong> 您可以根据以下不同信息来搜索您需要查看的疫情信息
+  <strong>温馨提示：</strong> 您可以根据以下不同条件来搜索您需要查看的疫情信息
 </div>
 
 

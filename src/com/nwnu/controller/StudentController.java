@@ -46,14 +46,14 @@ public class StudentController {
 		model.addAttribute("page",studentService.findStudentList(student, page, rows));
 		
 		
-		//性别字典
+		//这是性别字典
 		List<Dict> sexList = dictService.dictList("sex");
 		model.addAttribute("sexList", sexList);
-		//民族字典
+		//这是民族字典
 		List<Dict> nationList = dictService.dictList("nation");
 		model.addAttribute("nationList", nationList);
 		
-		//查找班级
+		//这是查找班级
 		List<Clazz> clazzList=clazzService.findClazzAll();
 		model.addAttribute("clazzList", clazzList);	
 		model.addAttribute("student", student);

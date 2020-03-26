@@ -17,11 +17,11 @@ function saveStudent(){
   $.post("insertStudent",$('#addStudentForm').serialize(),
   	function(data){
 	  if(data=="OK"){
-		  alert("疫情上报成功！");
+		  alert("疫情信息上报成功！");
 		  window.location.reload();
 		  clearFormData();
 	  }else{
-		  alert("操作失败！");
+		  alert("你的操作失败！");
 	  }
   	}
   );
@@ -59,15 +59,15 @@ function clearQueryForm(){
 	$("#queryForm #nation").val("");
 }
 function deleteStudent(id){	
-	var r = confirm("你确定删除吗");
+	var r = confirm("你确定要删除吗");
 	if (r == true) {
 		$.post("deleteStudent",{"id":id},
 			  	function(data){
 				  if(data=="OK"){
-					  alert("删除学生成功！");
+					  alert("删除学生信息成功！");
 					  window.location.reload();
 				  }else{
-					  alert("删除学生失败！");
+					  alert("删除学生信息失败！");
 					  
 				  }
 			  	}
@@ -88,7 +88,7 @@ function deleteStudent(id){
 			</a>
 		</div>
 		<div class="s_top_right">
-			欢迎来到西北师范大学！
+			欢迎来到西北师范大学疫情上报系统！
 			<a href="" class="s_top_a1">免费注册</a>
 			<a href="" class="s_top_a2">帮助中心</a>
 		</div>
@@ -160,7 +160,7 @@ function deleteStudent(id){
 
 <div class="alert alert-danger alert-dismissible" role="alert" style="display:inline-block;float:right;margin-top:20px;">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>温馨提示：</strong> 如果你填报的信息有误，请联系学院负责老师进行修改！
+  <strong>温馨提示：</strong> 如果你填报的信息有误，请你联系学院负责老师进行修改！
 </div>
 		</div>
 		<div class="s_cen_left">

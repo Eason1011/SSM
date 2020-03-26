@@ -19,12 +19,12 @@ public class NavigationTag extends TagSupport {
     private String bean = "page";
 
     /**
-     * 分页跳转的url地址,此属性必须
+     * 分页跳转的url地址,此属性是必须的
      */
     private String url = null;
 
     /**
-     * 显示页码数量
+     * 显示页码的数量
      */
     private int number = 5;
 
@@ -37,7 +37,7 @@ public class NavigationTag extends TagSupport {
             return SKIP_BODY;
         url = resolveUrl(url, pageContext);
         try {
-            // 计算总页数
+            // 计算总的页数
             int pageCount = page.getTotal() / page.getSize();
             if (page.getTotal() % page.getSize() > 0) {
                 pageCount++;

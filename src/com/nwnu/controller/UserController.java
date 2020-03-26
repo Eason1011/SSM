@@ -18,7 +18,7 @@ public class UserController {
 	@RequestMapping("/login")
 	
 	public String login(String code,String password,Model model,HttpSession session) {
-		//通过用户账号和密码查找用户
+		//通过用户账号和密码来查找用户
 		User user=userService.findUser(code, password);
 		if(user!=null) {
 			//将用户对象添加到Session
@@ -30,7 +30,7 @@ public class UserController {
 			
 		}else {
 			//返回到登录界面
-			model.addAttribute("msg", "账号或密码错误，请重新输入");
+			model.addAttribute("msg", "账号或密码输入错误，请重新输入");
 			return "login";
 		}
 	}

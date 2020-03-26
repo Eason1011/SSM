@@ -26,7 +26,7 @@ public class AccountController {
 		Account account=accountService.findAccountById(id);
 		//向模型中添加数据,对象等
 		mav.addObject("account",account);
-		//设置一个视图
+		//设置了一个视图
 		mav.setViewName("user");		
 		
 		return mav;
